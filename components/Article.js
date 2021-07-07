@@ -87,6 +87,16 @@ const data = [
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
+  ,
+  {
+    title: 'Test Test Test Test Test',
+    date: 'Date test',
+    firstParagraph: `Test TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest `,
+
+    secondParagraph: `2ndTEST 2ndTEST2ndTEST2ndTEST2ndTEST2ndTEST2ndTEST2ndTEST2ndTEST2ndTEST2ndTEST2ndTEST2ndTEST2ndTEST2ndTEST2ndTEST2ndTEST2ndTEST2ndTEST2ndTEST2ndTEST2ndTEST2ndTEST2ndTEST2ndTEST`,
+
+    thirdParagraph: `3rd Test 3rd Test 3rd Test 3rd Test 3rd Test 3rd Test 3rd Test 3rd Test 3rd Test 3rd Test 3rd Test 3rd Test 3rd Test 3rd Test 3rd Test 3rd Test 3rd Test 3rd Test 3rd Test 3rd Test 3rd Test 3rd Test 3rd Test 3rd Test 3rd Test 3rd Test 3rd Test 3rd Test .`
+  }
 ];
 
 /*
@@ -114,3 +124,36 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+function articleMaker({title,date,firstParagraph,secondParagraph,thirdParagraph}){
+  const article = document.createElement('div')
+  const header2 = document.createElement('h2')
+  const mydate = document.createElement('p')
+  const firstp = document.createElement('p')
+  const secondp = document.createElement('p')
+  const thirdp = document.createElement('p')
+  const myspan = document.createElement('span')
+  article.classList.add('article')
+  header2.textContent = title
+  article.append(header2)
+  mydate.textContent = date
+  article.append(mydate)
+  mydate.classList.add('date')
+  firstp.textContent = firstParagraph
+  article.append(firstp)
+  secondp.textContent = secondParagraph
+  article.append(secondp)
+  thirdp.textContent = thirdParagraph
+  article.append(thirdp)
+  myspan.textContent = '+'
+  article.append(myspan)
+  myspan.classList.add('expandButton')
+  
+  myspan.addEventListener('click', ()=>{
+    article.classList.toggle('article-open')
+  })
+  return article
+}
+const articles = document.querySelector('.articles')
+data.forEach(obj => {
+  articles.appendChild(articleMaker(obj))
+})
